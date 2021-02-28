@@ -58,7 +58,7 @@ int main(){
     struct node* root = NULL;
     int val[8],i;
     for( i = 0; i < 8; i++){
-    	printf("\nEnter value to be entered:");
+    	printf("\nEnter value to the BST: ");
     	scanf("%d",&val[i]);
 
     	root = insert(root,val[i]);
