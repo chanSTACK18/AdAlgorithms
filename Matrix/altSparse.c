@@ -2,7 +2,7 @@
  ============================================================================
  Name        : sparseMatrix.c
  Author      : CodeSTACK
- Version     : v0.1
+ Version     : v0.1.2
  Copyright   : Your copyright notice
  Description : Hello World in C, Ansi-style
  ============================================================================
@@ -27,7 +27,7 @@ int main()
 		for(j=0;j<cols;j++)
 		{
 			//taking inputs of rows and columns
-			printf("[%d][%d]: ",i+1,j+1);
+			printf("[%d][%d]: ",i,j);
 			scanf("%d",&mat[i][j]);
 		}
 
