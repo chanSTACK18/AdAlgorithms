@@ -25,7 +25,7 @@ void read_matrix(int a[10][10], int rows, int cols){
     {
         for ( j = 0; j < cols; j++)
         {
-            printf("[%d][%d]",i,j);
+            printf("[%d][%d]: ",i,j);
             scanf("%d",&a[i][j]);
         }
         
