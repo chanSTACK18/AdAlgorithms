@@ -71,4 +71,4 @@ int main()
 		printf("\n");
 	}
 }
-/*End of main*/
+
