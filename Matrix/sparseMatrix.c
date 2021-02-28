@@ -1,3 +1,13 @@
+/*
+ ============================================================================
+ Name        : sparseMatrix.c
+ Author      : CodeSTACK
+ Version     : v0.2
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+
 // Implementation of SparseMatrix using C
 #include <stdio.h>
 #define MAX 20
