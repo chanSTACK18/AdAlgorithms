@@ -1,11 +1,11 @@
 /*
- ============================================================================
- Name        : sparseMatrix.c
- Author      : CodeSTACK
- Version     : v0.2
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
- ============================================================================
+    ============================================================================
+    Name        : sparseMatrix.c
+    Author      : CodeSTACK
+    Version     : v0.2
+    Copyright   : Your copyright notice
+    Description : Hello World in C, Ansi-style
+    ============================================================================
  */
 
 #include <stdio.h>
