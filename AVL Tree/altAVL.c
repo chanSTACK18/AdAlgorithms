@@ -151,8 +151,10 @@ int main()
 {
     struct Node *root = NULL;
 
-    int choice, i;
-    for ( i = 0; i < choice; i++)
+    int choice, n;
+    printf("\nEnter the number you want to enter:");
+    scanf("%d",&n);
+    for ( int i = 0; i < choice; i++)
     {
         
     }
