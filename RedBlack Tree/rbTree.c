@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum nodeColor {
+enum nodeColor 
+{
   RED,
   BLACK
 };
@@ -17,55 +18,55 @@ struct rbNode *root = NULL;
 
 // Create a red-black tree
 struct rbNode *createNode(int data) {
-  struct rbNode *newnode;
-  newnode = (struct rbNode *)malloc(sizeof(struct rbNode));
-  newnode->data = data;
-  newnode->color = RED;
-  newnode->link[0] = newnode->link[1] = NULL;
-  return newnode;
+  struct rbNode *newNode;
+  newNode = (struct rbNode *)malloc(sizeof(struct rbNode));
+  newNode->data = data;
+  newNode->color = RED;
+  newNode->link[0] = newNode->link[1] = NULL;
+  return newNode;
 }
 
 // Insert an node
-void insertion(int data) {
-  struct rbNode *stack[98], *ptr, *newnode, *xPtr, *yPtr;
-  int dir[98], ht = 0, index;
+void insertNode(int data) {
+  struct rbNode *stack[98], *ptr, *newNode, *xPtr, *yPtr;
+  int dir[98], height = 0, index;
   ptr = root;
   if (!root) {
     root = createNode(data);
     return;
   }
 
-  stack[ht] = root;
-  dir[ht++] = 0;
+  stack[height] = root;
+  dir[height++] = 0;
   while (ptr != NULL) {
     if (ptr->data == data) {
       printf("Duplicates Not Allowed!!\n");
       return;
     }
     index = (data - ptr->data) > 0 ? 1 : 0;
-    stack[ht] = ptr;
+    stack[height] = ptr;
     ptr = ptr->link[index];
-    dir[ht++] = index;
+    dir[height++] = index;
   }
-  stack[ht - 1]->link[index] = newnode = createNode(data);
-  while ((ht >= 3) && (stack[ht - 1]->color == RED)) {
-    if (dir[ht - 2] == 0) {
-      yPtr = stack[ht - 2]->link[1];
+  stack[height - 1]->link[index] = newNode = createNode(data);
+  while ((height >= 3) && (stack[height - 1]->color == RED)) {
+    if (dir[height - 2] == 0) {
+      yPtr = stack[height - 2]->link[1];
       if (yPtr != NULL && yPtr->color == RED) {
-        stack[ht - 2]->color = RED;
-        stack[ht - 1]->color = yPtr->color = BLACK;
-        ht = ht - 2;
+        stack[height - 2]->color = RED;
+        stack[height - 1]->color = yPtr->color = BLACK;
+        height = height - 2;
       } else {
-        if (dir[ht - 1] == 0) {
-          yPtr = stack[ht - 1];
+        if (dir[height - 1] == 0) {
+          yPtr = stack[height - 1];
         } else {
-          xPtr = stack[ht - 1];
+          xPtr = stack[height - 1];
           yPtr = xPtr->link[1];
           xPtr->link[1] = yPtr->link[0];
           yPtr->link[0] = xPtr;
-          stack[ht - 2]->link[0] = yPtr;
+          stack[height - 2]->link[0] = yPtr;
         }
-        xPtr = stack[ht - 2];
+        xPtr = stack[height - 2];
         xPtr->color = RED;
         yPtr->color = BLACK;
         xPtr->link[0] = yPtr->link[1];
@@ -73,27 +74,27 @@ void insertion(int data) {
         if (xPtr == root) {
           root = yPtr;
         } else {
-          stack[ht - 3]->link[dir[ht - 3]] = yPtr;
+          stack[height - 3]->link[dir[height - 3]] = yPtr;
         }
         break;
       }
     } else {
-      yPtr = stack[ht - 2]->link[0];
+      yPtr = stack[height - 2]->link[0];
       if ((yPtr != NULL) && (yPtr->color == RED)) {
-        stack[ht - 2]->color = RED;
-        stack[ht - 1]->color = yPtr->color = BLACK;
-        ht = ht - 2;
+        stack[height - 2]->color = RED;
+        stack[height - 1]->color = yPtr->color = BLACK;
+        height = height - 2;
       } else {
-        if (dir[ht - 1] == 1) {
-          yPtr = stack[ht - 1];
+        if (dir[height - 1] == 1) {
+          yPtr = stack[height - 1];
         } else {
-          xPtr = stack[ht - 1];
+          xPtr = stack[height - 1];
           yPtr = xPtr->link[0];
           xPtr->link[0] = yPtr->link[1];
           yPtr->link[1] = xPtr;
-          stack[ht - 2]->link[1] = yPtr;
+          stack[height - 2]->link[1] = yPtr;
         }
-        xPtr = stack[ht - 2];
+        xPtr = stack[height - 2];
         yPtr->color = BLACK;
         xPtr->color = RED;
         xPtr->link[1] = yPtr->link[0];
@@ -101,7 +102,7 @@ void insertion(int data) {
         if (xPtr == root) {
           root = yPtr;
         } else {
-          stack[ht - 3]->link[dir[ht - 3]] = yPtr;
+          stack[height - 3]->link[dir[height - 3]] = yPtr;
         }
         break;
       }
@@ -111,10 +112,10 @@ void insertion(int data) {
 }
 
 // Delete a node
-void deletion(int data) {
+void deleteNode(int data) {
   struct rbNode *stack[98], *ptr, *xPtr, *yPtr;
   struct rbNode *pPtr, *qPtr, *rPtr;
-  int dir[98], ht = 0, diff, i;
+  int dir[98], height = 0, diff, i;
   enum nodeColor color;
 
   if (!root) {
@@ -127,8 +128,8 @@ void deletion(int data) {
     if ((data - ptr->data) == 0)
       break;
     diff = (data - ptr->data) > 0 ? 1 : 0;
-    stack[ht] = ptr;
-    dir[ht++] = diff;
+    stack[height] = ptr;
+    dir[height++] = diff;
     ptr = ptr->link[diff];
   }
 
@@ -140,7 +141,7 @@ void deletion(int data) {
       root = ptr->link[0];
       free(ptr);
     } else {
-      stack[ht - 1]->link[dir[ht - 1]] = ptr->link[0];
+      stack[height - 1]->link[dir[height - 1]] = ptr->link[0];
     }
   } else {
     xPtr = ptr->link[1];
@@ -153,16 +154,16 @@ void deletion(int data) {
       if (ptr == root) {
         root = xPtr;
       } else {
-        stack[ht - 1]->link[dir[ht - 1]] = xPtr;
+        stack[height - 1]->link[dir[height - 1]] = xPtr;
       }
 
-      dir[ht] = 1;
-      stack[ht++] = xPtr;
+      dir[height] = 1;
+      stack[height++] = xPtr;
     } else {
-      i = ht++;
+      i = height++;
       while (1) {
-        dir[ht] = 0;
-        stack[ht++] = xPtr;
+        dir[height] = 0;
+        stack[height++] = xPtr;
         yPtr = xPtr->link[0];
         if (!yPtr->link[0])
           break;
@@ -189,43 +190,43 @@ void deletion(int data) {
     }
   }
 
-  if (ht < 1)
+  if (height < 1)
     return;
 
   if (ptr->color == BLACK) {
     while (1) {
-      pPtr = stack[ht - 1]->link[dir[ht - 1]];
+      pPtr = stack[height - 1]->link[dir[height - 1]];
       if (pPtr && pPtr->color == RED) {
         pPtr->color = BLACK;
         break;
       }
 
-      if (ht < 2)
+      if (height < 2)
         break;
 
-      if (dir[ht - 2] == 0) {
-        rPtr = stack[ht - 1]->link[1];
+      if (dir[height - 2] == 0) {
+        rPtr = stack[height - 1]->link[1];
 
         if (!rPtr)
           break;
 
         if (rPtr->color == RED) {
-          stack[ht - 1]->color = RED;
+          stack[height - 1]->color = RED;
           rPtr->color = BLACK;
-          stack[ht - 1]->link[1] = rPtr->link[0];
-          rPtr->link[0] = stack[ht - 1];
+          stack[height - 1]->link[1] = rPtr->link[0];
+          rPtr->link[0] = stack[height - 1];
 
-          if (stack[ht - 1] == root) {
+          if (stack[height - 1] == root) {
             root = rPtr;
           } else {
-            stack[ht - 2]->link[dir[ht - 2]] = rPtr;
+            stack[height - 2]->link[dir[height - 2]] = rPtr;
           }
-          dir[ht] = 0;
-          stack[ht] = stack[ht - 1];
-          stack[ht - 1] = rPtr;
-          ht++;
+          dir[height] = 0;
+          stack[height] = stack[height - 1];
+          stack[height - 1] = rPtr;
+          height++;
 
-          rPtr = stack[ht - 1]->link[1];
+          rPtr = stack[height - 1]->link[1];
         }
 
         if ((!rPtr->link[0] || rPtr->link[0]->color == BLACK) &&
@@ -238,42 +239,42 @@ void deletion(int data) {
             qPtr->color = BLACK;
             rPtr->link[0] = qPtr->link[1];
             qPtr->link[1] = rPtr;
-            rPtr = stack[ht - 1]->link[1] = qPtr;
+            rPtr = stack[height - 1]->link[1] = qPtr;
           }
-          rPtr->color = stack[ht - 1]->color;
-          stack[ht - 1]->color = BLACK;
+          rPtr->color = stack[height - 1]->color;
+          stack[height - 1]->color = BLACK;
           rPtr->link[1]->color = BLACK;
-          stack[ht - 1]->link[1] = rPtr->link[0];
-          rPtr->link[0] = stack[ht - 1];
-          if (stack[ht - 1] == root) {
+          stack[height - 1]->link[1] = rPtr->link[0];
+          rPtr->link[0] = stack[height - 1];
+          if (stack[height - 1] == root) {
             root = rPtr;
           } else {
-            stack[ht - 2]->link[dir[ht - 2]] = rPtr;
+            stack[height - 2]->link[dir[height - 2]] = rPtr;
           }
           break;
         }
       } else {
-        rPtr = stack[ht - 1]->link[0];
+        rPtr = stack[height - 1]->link[0];
         if (!rPtr)
           break;
 
         if (rPtr->color == RED) {
-          stack[ht - 1]->color = RED;
+          stack[height - 1]->color = RED;
           rPtr->color = BLACK;
-          stack[ht - 1]->link[0] = rPtr->link[1];
-          rPtr->link[1] = stack[ht - 1];
+          stack[height - 1]->link[0] = rPtr->link[1];
+          rPtr->link[1] = stack[height - 1];
 
-          if (stack[ht - 1] == root) {
+          if (stack[height - 1] == root) {
             root = rPtr;
           } else {
-            stack[ht - 2]->link[dir[ht - 2]] = rPtr;
+            stack[height - 2]->link[dir[height - 2]] = rPtr;
           }
-          dir[ht] = 1;
-          stack[ht] = stack[ht - 1];
-          stack[ht - 1] = rPtr;
-          ht++;
+          dir[height] = 1;
+          stack[height] = stack[height - 1];
+          stack[height - 1] = rPtr;
+          height++;
 
-          rPtr = stack[ht - 1]->link[0];
+          rPtr = stack[height - 1]->link[0];
         }
         if ((!rPtr->link[0] || rPtr->link[0]->color == BLACK) &&
           (!rPtr->link[1] || rPtr->link[1]->color == BLACK)) {
@@ -285,32 +286,32 @@ void deletion(int data) {
             qPtr->color = BLACK;
             rPtr->link[1] = qPtr->link[0];
             qPtr->link[0] = rPtr;
-            rPtr = stack[ht - 1]->link[0] = qPtr;
+            rPtr = stack[height - 1]->link[0] = qPtr;
           }
-          rPtr->color = stack[ht - 1]->color;
-          stack[ht - 1]->color = BLACK;
+          rPtr->color = stack[height - 1]->color;
+          stack[height - 1]->color = BLACK;
           rPtr->link[0]->color = BLACK;
-          stack[ht - 1]->link[0] = rPtr->link[1];
-          rPtr->link[1] = stack[ht - 1];
-          if (stack[ht - 1] == root) {
+          stack[height - 1]->link[0] = rPtr->link[1];
+          rPtr->link[1] = stack[height - 1];
+          if (stack[height - 1] == root) {
             root = rPtr;
           } else {
-            stack[ht - 2]->link[dir[ht - 2]] = rPtr;
+            stack[height - 2]->link[dir[height - 2]] = rPtr;
           }
           break;
         }
       }
-      ht--;
+      height--;
     }
   }
 }
 
 // Print the inorder traversal of the tree
-void inorderTraversal(struct rbNode *node) {
+void inOrderTraversal(struct rbNode *node) {
   if (node) {
-    inorderTraversal(node->link[0]);
+    inOrderTraversal(node->link[0]);
     printf("%d  ", node->data);
-    inorderTraversal(node->link[1]);
+    inOrderTraversal(node->link[1]);
   }
   return;
 }
@@ -327,15 +328,15 @@ int main() {
       case 1:
         printf("Enter the element to insert:");
         scanf("%d", &data);
-        insertion(data);
+        insertNode(data);
         break;
       case 2:
         printf("Enter the element to delete:");
         scanf("%d", &data);
-        deletion(data);
+        deleteNode(data);
         break;
       case 3:
-        inorderTraversal(root);
+        inOrderTraversal(root);
         printf("\n");
         break;
       case 4:
