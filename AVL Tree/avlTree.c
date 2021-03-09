@@ -234,7 +234,7 @@ int main() {
             PreOrder(root);
             printf("\n");
             break;
-            case 4:
+        case 4:
             exit(0);
         default:
             printf("Not available\n");
