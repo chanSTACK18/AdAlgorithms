@@ -223,6 +223,9 @@ int main()
     root = insertNode(root, 3);
     root = insertNode(root, 8);
 
+    printPreOrder(root);
+    root = deleteNode(root,3);
+    
     printf("\nAVL Tree Order 5: ");
     printPreOrder(root);
 
