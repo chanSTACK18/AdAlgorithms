@@ -21,6 +21,7 @@ struct Node
     struct Node *right;
     int height;
 };
+struct Node *root = NULL;
 
 int max(int a, int b);
 
@@ -201,7 +202,7 @@ struct Node *deleteNode(struct Node *root, int key)
 }
 
 // Print the tree
-void printPreOrder(struct Node *root) 
+void PreOrder(struct Node *root) 
 {
     if (root != NULL) 
     {
@@ -211,23 +212,35 @@ void printPreOrder(struct Node *root)
     }
 }
 
-int main() 
-{
-    struct Node *root = NULL;
-
-    root = insertNode(root, 2);
-    root = insertNode(root, 1);
-    root = insertNode(root, 7);
-    root = insertNode(root, 4);
-    root = insertNode(root, 5);
-    root = insertNode(root, 3);
-    root = insertNode(root, 8);
-
-    printPreOrder(root);
-    root = deleteNode(root,3);
-    
-    printf("\nAVL Tree Order 5: ");
-    printPreOrder(root);
-
+int main() {
+    int ch, data;
+    while (1) {
+        printf("1. Insertion\t2. Deletion\n");
+        printf("3. Traverse\t4. Exit");
+        printf("\nEnter your choice:");
+        scanf("%d", &ch);
+        switch (ch) {
+        case 1:
+            printf("Enter the element to insert:");
+            scanf("%d", &data);
+            insertNode(data);
+            break;
+        case 2:
+            printf("Enter the element to delete:");
+            scanf("%d", &data);
+            deleteNode(data);
+            break;
+        case 3:
+            PreOrder(root);
+            printf("\n");
+            break;
+            case 4:
+            exit(0);
+        default:
+            printf("Not available\n");
+            break;
+        }
+        printf("\n");
+    }
     return 0;
 }
