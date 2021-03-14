@@ -151,16 +151,24 @@ int main()
 {
     struct Node *root = NULL;
 
-    int choice, n;
-    printf("\nEnter the number you want to enter:");
-    scanf("%d",&n);
-    for ( int i = 0; i < choice; i++)
+    int choice, data;
+    while(1)
     {
+        printf("1. Insertion\t2. Deletion");
+        printf("3. Travesal\t3. Exit");
+        printf("\nEnter your choice: ");
+        scanf("%d",&choice);
+        switch (choice)
+        {
+        case 1:
+            printf("\nEnter the element to Insert: ");
+            scanf("%d",&data);
+            insertNode(data);
+            break;
         
+        default:
+            break;
+        }
     }
-    
-    printf("\nAVL Tree Order 5: ");
-    printPreOrder(root);
-
     return 0;
 }
