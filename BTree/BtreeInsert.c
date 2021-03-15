@@ -62,7 +62,7 @@ void splitNode(int item, int *parVAl, int pos, struct btreeNode *node, struct bt
         node->count = mid;
         (*newNode)->count = MAX - mid;
 
-        if (pos <= MIN) 
+        if (pos <= MIN)
         {
             insertValue(item, pos, node, child);
         } 

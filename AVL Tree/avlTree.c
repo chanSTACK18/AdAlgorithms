@@ -1,6 +1,6 @@
 /*
     ============================================================================
-    Name        : sparseMatrix.c
+    Name        : avlTree.c
     Author      : CodeSTACK
     Version     : v0.2
     Copyright   : Your copyright notice
