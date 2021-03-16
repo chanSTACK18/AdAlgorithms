@@ -57,7 +57,7 @@ void dijkstra(int Graph[MAX][MAX],int n,int startNode)
 	for(i=0;i<n;i++)
 		if(i!=startNode)
 		{
-			printf("\nDistance of node%d=%d",i, Dist[i]);
+			printf("\nDistance of Node %d=%d",i, Dist[i]);
 			printf("\nPath=%d",i);
 			
 			j=i;
