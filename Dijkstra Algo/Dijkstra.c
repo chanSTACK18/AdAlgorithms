@@ -2,7 +2,7 @@
 #include<conio.h>
 #define INFINITY 9999
 #define MAX 10
- 
+
 void dijkstra(int Graph[MAX][MAX],int n,int startNode);
 
 
@@ -53,7 +53,6 @@ void dijkstra(int Graph[MAX][MAX],int n,int startNode)
 					}
 		count++;
 	}
- 
 	
 	for(i=0;i<n;i++)
 		if(i!=startNode)
