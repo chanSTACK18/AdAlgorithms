@@ -33,17 +33,19 @@ void floydWarshall(int Graph[][nV])
 void printMatrix(int matrix[][nV])
 {
 	int i, j;
+    printf ("The following matrix shows the shortest distances"
+            " between every pair of vertices \n");
 	for(i = 0; i < nV; i++)
 	{
 		for(j = 0; j < nV; j++)
 		{
 			if (matrix[i][j] = INF)
 			{
-				printf("%4s","INF");
+				printf("%7s","INF");
 			}
 			else
 			{
-				printf("%4d",matrix[i][j]);
+				printf("%7d",matrix[i][j]);
 			}
 		}
 		printf("\n");
@@ -53,10 +55,10 @@ void printMatrix(int matrix[][nV])
 int main()
 {
     int Graph[nV][nV] = {
-        {0, 3, INF, 5},
-        {2, 0, INF, 4},
-        {INF, 1, 0, INF},
-        {INF, INF, 2,0}
+        {0, 5, INF, 10},
+        {INF, 0, 3, INF},
+        {INF, INF, 0, 1},
+        {INF, INF, INF,1}
     };
     floydWarshall(Graph);
 
