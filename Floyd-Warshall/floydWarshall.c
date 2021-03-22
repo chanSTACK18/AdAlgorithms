@@ -22,8 +22,8 @@ void floydWarshall(int Graph[][nV])
         {
             for(j = 0; j < nV; j++)
             {
-                if( matrix[i][k] + matrix[k][j] < matrix[i][j])
-                   matrix[i][j] = matrix[i][k] + matrix[k][j];
+                if(matrix[i][k] + matrix[k][j] < matrix[i][j])
+                    matrix[i][j] = matrix[i][k] + matrix[k][j];
             }
         }
     }
