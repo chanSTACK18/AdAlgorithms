@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-void prefixSuffixArray(char *pat, int M, int *pps)
+#define txt 200
+#define word 20
+
+void prefixToSuffix(char *pat, int M, int *pps)
 {
     int length = 0;
     pps[0] = 0;
@@ -32,7 +35,7 @@ void KMPAlgorithm(char *text, char *pattern)
     int M = strlen(pattern);
     int N = strlen(text);
     int pps[M];
-    prefixSuffixArray(pattern, M, pps);
+    prefixToSuffix(pattern, M, pps);
     int i = 0;
     int j = 0;
     while (i < N)
@@ -44,7 +47,7 @@ void KMPAlgorithm(char *text, char *pattern)
         }
         if (j == M)
         {
-            printf("Found pattern at index %d\n", i - j);
+            printf("[+]Found pattern at index %d\n", i - j);
             j = pps[j - 1];
         }
         else if (i < N && pattern[j] != text[i])
@@ -58,9 +61,11 @@ void KMPAlgorithm(char *text, char *pattern)
 }
 int main()
 {
-    char text[] = "Programming";
-    char pattern[] = "gram";
-    printf("The pattern is found in the text at the following index : \n");
+    char text[txt], pattern[word];
+    printf("[+]Enter a String: ");
+    scanf("%s", text);
+    printf("[+]Enter a Pattern: ");
+    scanf("%s", pattern);
     KMPAlgorithm(text, pattern);
     return 0;
 }
