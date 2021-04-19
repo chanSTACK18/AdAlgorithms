@@ -66,6 +66,8 @@ int main()
     scanf("%s", text);
     printf("[+]Enter a Pattern: ");
     scanf("%s", pattern);
+
+    printf("[-]No Pattern is Found !!");
     KMPAlgorithm(text, pattern);
     return 0;
 }
