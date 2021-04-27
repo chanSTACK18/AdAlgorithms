@@ -180,16 +180,29 @@ void printQueue(struct queue *q)
 
 int main()
 {
-    struct Graph *graph = createGraph(6);
+    struct Graph *graph = NULL;
+    int Edge[SIZE][SIZE], node, vert, i, j;
+
+    printf("Enter no. of vertices:");
+    scanf("%d", &vert);
+    printf("\nEnter the adjacency matrix:\n");
+
+    for (i = 0; i < vert; i++)
+        for (j = 0; j < vert; j++)
+            scanf("%d", &Edge[i][j]);
+
+    printf("\nEnter the starting node:");
+    scanf("%d", &node);
+    /* struct Graph *graph = createGraph(6);
     addEdge(graph, 0, 1);
     addEdge(graph, 0, 2);
     addEdge(graph, 1, 2);
     addEdge(graph, 1, 4);
     addEdge(graph, 1, 3);
     addEdge(graph, 2, 4);
-    addEdge(graph, 3, 4);
+    addEdge(graph, 3, 4); */
 
-    bfs(graph, 0);
+    bfs(graph, node);
 
     return 0;
 }
