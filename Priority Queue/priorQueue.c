@@ -21,9 +21,9 @@ void insert()
 {
   int item, itemPrior;
   newNode = (PriorQue *)malloc(sizeof(PriorQue));
-  printf("[+]Enter element to be inserted :\n");
+  printf("\n[+]Enter element to be inserted : ");
   scanf("%d", &item);
-  printf("[+]Enter it's Priority :\n");
+  printf("\n[+]Enter it's Priority : ");
   scanf("%d", &itemPrior);
   newNode->info = item;
   newNode->priority = itemPrior;
@@ -54,12 +54,12 @@ void delete ()
 {
   if (start == NULL)
   {
-    printf("\n[-]Queue Underflow Condition!!\n");
+    printf("\n[-]Queue Underflow Condition!!");
   }
   else
   {
     newNode = start;
-    printf("\n[-]Deleted Item is %d\n", newNode->info);
+    printf("\n[-]Deleted Item is %d ", newNode->info);
     start = start->next;
     //free(start);
   }
@@ -69,14 +69,14 @@ void display()
 {
   temp = start;
   if (start == NULL)
-    printf("[-]Queue is Empty\n");
+    printf("\n[-]Queue is Empty ");
   else
   {
-    printf("[+]Queue IS:\n");
+    printf("\n[*]Queue IS: ");
     if (temp != NULL)
       for (temp = start; temp != NULL; temp = temp->next)
       {
-        printf("[*]\n%d Priority = %d\n", temp->info, temp->priority);
+        printf("\n[*] %d Priority = %d\n", temp->info, temp->priority);
         //temp=temp->next;
       }
   }
@@ -87,7 +87,7 @@ int main()
   int choice;
   do
   {
-    printf("\n[1] INSERTION\t[2] DELETION\t[3] DISPLAY [4] EXIT\t:");
+    printf("\n[1] INSERTION\t[2] DELETION\t[3] DISPLAY [4] EXIT\n[+]Enter your Choice: ");
     scanf("%d", &choice);
     switch (choice)
     {
